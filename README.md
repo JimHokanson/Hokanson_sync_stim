@@ -8,10 +8,10 @@ https://github.com/JimHokanson/matlab_NEURON
 # Requirements #
 
 1. Windows - the code has currently only been tested on Windows
-2. [NEURON](https://www.neuron.yale.edu/neuron/)
+2. [NEURON](https://www.neuron.yale.edu/neuron/) - tested on 7.2 and 7.3
 3. Matlab - tested on versions between 2013 and 2017
 
-The following were used for computing an initial threshold prediction. They are recommended but not required.
+The following were used for computing an initial threshold prediction. They are recommended but not required. Not using these toolboxes will increase the amount of time required to generate the figures.
 
 4. Curve Fitting Toolbox - Matlab
 5. Stats Toolbox - Matlab
@@ -19,7 +19,7 @@ The following were used for computing an initial threshold prediction. They are 
 # Setup #
 
 1. Install [NEURON](https://www.neuron.yale.edu/neuron/)
-2. In the base folder, copy the file **Example_Options.txt** to **options.txt** and modify the values accordingly. The "scratch_path" should point to a folder where the code can save files that are the results from simulation. After all simulations are run that folder will contain approximately 300 MBs of data. The neuron_exe_path should point to nrniv.exe.
+2. In the base folder, copy the file **Example_Options.txt** to **options.txt** and modify the values accordingly. The "scratch_path" should point to a folder where the code can save files that are the results from simulation. After all simulations are run that folder will contain approximately 300 MB of data. The neuron_exe_path should point to nrniv.exe.
 3. Run the initialization script
 
 ```matlab
@@ -41,7 +41,7 @@ options = NEURON.user_options.getInstance;
 
 4. Verify toolboxes (curve fitting and stats)
 
-The following commands can be run to see if the curve fitting and stats toolboxes:
+The following commands can be run to see if the curve fitting and stats toolboxes are installed. If these commands return an empty value then the toolboxes are not installed.
 
 ```matlab
 %For curve fitting
@@ -60,7 +60,7 @@ File to edit:
 NEURON.xstim.single_AP_sim.predicter.predictThresholds
 
 This file is located at:
-"matlab_code\+NEURON\+xstim\+single_AP_sim\@predicter"
+"/matlab_code/+NEURON/+xstim/+single_AP_sim/@predicter"
 
 5. Compile the required mod file
 
@@ -83,7 +83,11 @@ NEURON.reproductions.Hokanson_2013.all_final_figures
 ```
 
 This file is located at:
-"matlab_code\+NEURON\+reproductions\@Hokanson_2013"
+"/matlab_code/+NEURON/+reproductions/@Hokanson_2013"
 
-Intermediate results are saved to disk. Execution can be canceled at any time and the code will resume as close to the last simulation as possible.  
+Intermediate results are saved to disk. Execution can be canceled at any time and the code will resume as close to the last simulation as possible. 
+
+# Problems #
+
+Feel free to post an issue on GitHub or send me an email.
 
