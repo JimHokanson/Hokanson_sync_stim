@@ -35,21 +35,28 @@ command should work:
 options = NEURON.user_options.getInstance;
 
 
-
-4. Verify curve fitting toolbox is available:
+Verify available toolboxes
 %--------------------------------------------------------------------------
+%Toolboxes
+%- Curve Fitting Toolbox
+%- Stats Toolbox
+
 %??? Better method
 
-%Needed for:
-%NEURON.xstim.single_AP_sim.predicter.predictThresholds
+%Run these, they shouldn't be empty if the toolboxes are present:
 
-%Run this, shouldn't be empty
-which fitoptions
+which fitoptions  %curve fitting
+which knnsearch   %stats
 
 %If not present download the appropriate Matlab installer
-%and when installing, select the Curve Fitting Toolbox
+%and then install the appropriate toolboxes
 https://www.mathworks.com/downloads/
 
+%Alternatively, uncomment lines 46 & 47 in the following function
+%to bypass these toolboxes. This will greatly increase the time it takes
+%to run the code.
+
+%   NEURON.xstim.single_AP_sim.predicter.predictThresholds
 
 
 5. Compile code after modifying the mod_path:
@@ -77,7 +84,7 @@ NEURON.reproductions.Hokanson_2013.example_figure_1
 NEURON.reproductions.Hokanson_2013.figure_vr_walkthrough
 %201 - Figure 2 A,B,D,&E
 %202 - Figure 2 C&F
-%203 - Where are G - J??????
+%204 - Figure 2 G-J
 
 %Figure 3 - Result of random neuron placement - DONE
 NEURON.reproductions.Hokanson_2013.figure_populationResponseVariability

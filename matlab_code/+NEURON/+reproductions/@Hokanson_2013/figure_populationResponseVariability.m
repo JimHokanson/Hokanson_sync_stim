@@ -119,8 +119,6 @@ end
 %==========================================================================
 %==========================================================================
 
-figure(30)
-clf
 
 for iPair = 1:2
 
@@ -214,7 +212,7 @@ vol_ratio_inverse = n_single_c./n_double_c;
 mean_vol_ratio = 1./nanmean(vol_ratio_inverse);
 
 if iPair == 1
-   figure(1)
+   figure(30)
    clf
    %pair_indices
 end
