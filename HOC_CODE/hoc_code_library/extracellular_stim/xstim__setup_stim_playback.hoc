@@ -1,0 +1,53 @@
+proc xstim__setup_stim_playback() { local n_stim_changes localobj xstim__temp_stim_vector
+/*  xstim__setup_stim_playback
+
+Creates the vectors that are played into the extracellular potential
+to apply the stimulus. The values in these vectors are not populated
+until the scaling step (xstim__apply_stimulus).  This code just says
+"this vector should get played into here when I run"
+
+Essentially this then becomes a way of initializing a bunch of objects.
+
+USAGE
+------------------------------------------------------------
+xstim__setup_stim_playback()
+
+GLOBALS 
+------------------------------------------------------------
+xstim__all_sectionlist 	: List of all sections in an order
+		which is relevant given the applied stimulus.
+xstim__t_vec 			:
+xstim__stim_vector_list :
+
+POPULATES 
+------------------------------------------------------------
+xstim__stim_vector_list
+
+SEE ALSO
+--------------------------------------------------------------
+NEURON.simulation.extracellular_stim.init__create_stim_info
+
+
+*/
+
+n_stim_changes = xstim__t_vec.size
+
+//NOTE: At some point I thought I saw that this needs to be defined outside of any 
+//loops. It can then be redefined in the loops. I am not sure where documentation
+//discussing this is.
+xstim__temp_stim_vector = new Vector()
+
+//Careful, made error of using for(x)
+//See http://www.neuron.yale.edu/phpBB/viewtopic.php?f=15&t=2663
+
+xstim__stim_vector_list.remove_all()
+
+forsec xstim__all_sectionlist {
+	for (x,0) {
+		xstim__temp_stim_vector = new Vector(n_stim_changes)
+		xstim__temp_stim_vector.play(&e_extracellular(x),xstim__t_vec)
+		xstim__stim_vector_list.append(xstim__temp_stim_vector)
+	}
+}
+
+}

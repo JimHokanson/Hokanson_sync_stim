@@ -1,0 +1,28 @@
+proc insert_node_dynamics() {
+/*
+
+Calling Form
+========================================================
+insert_node_dynamics(dynamics_index)
+
+
+For lookup table, see constant property:
+MEMBRANE_DYNAMICS_OPTIONS in NEURON.cell.axon.generic.props
+Indexing starts at 1
+The keyword after insert corresponds to the SUFFIX of the mod file
+
+1 = HH, 2 = FH
+
+*/
+
+
+node_dynamics = $1
+
+
+if (node_dynamics == 1) {
+	insert hh
+} else if (node_dynamics == 2){
+	insert fh
+}	
+
+}

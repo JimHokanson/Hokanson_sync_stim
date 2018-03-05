@@ -1,0 +1,43 @@
+// create_generic_axon
+
+load_file("insert_node_dynamics.hoc")
+
+create node[number_internodes + 1], myelin[number_internodes]
+	
+for i=0, number_internodes-1 {
+	connect myelin[i](0), node[i](1)
+	connect node[i+1](0), myelin[i](1)
+}
+
+forsec "node" {
+insert_node_dynamics(node_dynamics)
+
+cm   = node_capacitance
+Ra   = node_axial_resistivity
+L    = node_length
+diam = node_diameter
+nseg = 1 //Leave hardcoded for now ...
+}
+
+//See also this on sections and their properties:
+//http://www.neuron.yale.edu/neuron/static/docs/help/neuron/neuron/geometry.html#Section
+
+forsec "myelin" {
+	insert pas
+		e_pas = v_init
+		g_pas = myelin_conductance
+	cm    = myelin_capacitance
+	Ra    = internode_axial_resistivity
+	nseg  = myelin_n_segs 
+	L     = myelin_length
+	diam  = fiber_diameter
+}
+
+//Do we need to change the defaults???? - I don't think so, leave for now
+forsec "myelin" { 
+	insert extracellular
+}
+
+forsec "node"   { 
+	insert extracellular
+}

@@ -1,0 +1,33 @@
+proc file__saveDataMatrix(){localobj file_ref, temp_save_vec, temp_list_obj
+/*
+
+CALLING FORM
+--------------------------------------------------------
+saveDataMatrix(file_path,list_obj)
+
+IMPROVEMENTS
+--------------------------------------------------------
+1) Allow specification of data type
+2) The ability to specify start and stop indices
+
+*/
+
+//argtype(i) - -1 if it doesn't exist
+//
+
+	file_ref      = new File()
+	temp_save_vec = new Vector()
+	temp_list_obj = new List()
+	
+	//http://www.neuron.yale.edu/neuron/static/docs/help/neuron/general/classes/vector/vect.html#vwrite
+	
+	file_ref.wopen($s1)
+	temp_list_obj = $o2
+	for ii = 0, temp_list_obj.count()-1 {
+		temp_save_vec = temp_list_obj.object(ii)
+		temp_save_vec.vwrite(file_ref,4)
+		//4 indicates a double
+		//
+	} 
+	file_ref.close()
+}

@@ -1,0 +1,2 @@
+scratch_path = C:\D\SimulationData
+neuron_exe_path = C:\nrn73\bin\nrniv.exe 

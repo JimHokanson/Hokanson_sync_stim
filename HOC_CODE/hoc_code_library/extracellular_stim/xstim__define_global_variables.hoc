@@ -1,0 +1,71 @@
+//xstim__define_global_variables.hoc
+
+//NOTE: We should make this an object ...
+
+
+//=================================================================
+//					OBJECT VARIABLES
+//=================================================================
+objref xstim__all_sectionlist 	
+objref xstim__node_sectionlist
+objref xstim__stim_vector_list
+objref xstim__v_ext_in
+objref xstim__t_vec
+objref xstim__node_vm_hist
+
+//---------------------------------------------------------------------
+//This is a list of all sections for stimulation
+xstim__all_sectionlist  = new SectionList() 
+//Relevant Methods:
+//	xstim__create_stim_sectionlist.hoc
+//	create_stim_sectionlist.hoc   => optional user defined method
+//	xstim__setup_stim_playback
+//	xstim__apply_stimulus
+//
+//	NEURON.cell.extracellular_stim_capable.create_stim_sectionlist
+//TODO: What other methods use this method ?????
+
+//---------------------------------------------------------------------
+//This list holds all nodes that could fire an action potential ...
+xstim__node_sectionlist = new SectionList()
+//	xstim__create_node_sectionlist.hoc
+//	create_node_sectionlist.hoc
+//	sim_logging__record_node_voltages.hoc
+//	
+//
+//	NEURON.cell.extracellular_stim_capable.create_node_sectionlist
+
+//---------------------------------------------------------------------
+//In order to record values during the simulation one can record variables into vectors.
+//These vectors must be held in memory in order to be written to during simulation.
+//The easiest way to do this is to add the vectors to a list, so that keeping the list
+//in memory keeps the vectors in memory and thus allows recordings of values.
+xstim__node_vm_hist 	= new List() 		
+//sim_logging__record_node_voltages
+//xstim__run_stimulation2
+//
+
+
+
+//----------------------------------------------------------------------------------------
+//This holds a set of vectors which get "played" into the model during the simulation.
+//Each vector in the list gets assigned to a particular segment.
+xstim__stim_vector_list = new List() 		
+//	xstim__setup_stim_playback.hoc
+//
+//	NEURON.simulation.extracellular_stim.init__create_stim_info
+
+
+
+//-------------------------------------------------------------------------
+//These are used for data transfer to NEURON from Matlab ...
+xstim__v_ext_in 		= new Vector() 	
+xstim__t_vec    		= new Vector()		
+//	xstim__load_data.hoc
+//	xstim__setup_stim_playback.hoc
+//
+//	NEURON.simulation.extracellular_stim.init__create_stim_info
+
+
+
+
